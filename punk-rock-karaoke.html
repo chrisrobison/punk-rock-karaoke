@@ -17,7 +17,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            background-color:#000;
         }
 
         header {
@@ -27,8 +26,6 @@
         }
 
         main {
-            background-color: #000;
-            color: #ddd;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -42,9 +39,6 @@
         }
 
         li {
-            display: flex;
-            flex-direction: row;
-            white-space: nowrap;
         }
         .artist {
             display: inline-block;
@@ -53,10 +47,14 @@
         ul.artists > li {
             border-top: 1px solid #0006;
             margin-top: 1em;
+            list-style-position: outside;
+            list-style: none;
         }
         .artists {
             background-color: #fff;
             color: #111;
+            column-count: 2;
+            width: 8in;
         }
     </style>
 </head>
