@@ -1,0 +1,348 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Lexend", "Helvetica Neue", "Helvetica", sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:#eee;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #999;
+    color: #eee;
+    height: 0vh;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url("img/long-bg.png");
+    background-size: 600px 3200px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+.bg1 main { background: url("img/bg1.png"); }
+.bg2 main { background: url("img/bg2.png"); }
+.bg3 main { background: url("img/bg3.png"); }
+.bg4 main { background: url("img/bg4.png"); }
+.bg5 main { background: url("img/bg5.png"); }
+
+footer {
+    background-color: #666;
+    color: #eee;
+    height: 0vh;
+}
+
+li {
+    box-sizing: border-box;
+}
+.artist {
+    display: block;
+    background-color:#eee;
+    box-sizing: border-box;
+}
+ul.artists > li {
+    border-top: 1px solid #0006;
+    margin-top: 1em;
+    list-style-position: outside;
+    list-style: none;
+    break-inside: avoid-page;
+}
+ul.artists > li:first-child {
+    margin-top:0px;
+}
+.artists {
+    color: #111;
+    column-count: 3;
+    width: 8in;
+    box-sizing: border-box;
+}
+.artist {
+    font-size: 1.1em;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+ol {
+    box-sizing: border-box;
+    padding-left: 8px;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+}
+#guide li {
+    list-style-type: none;
+    padding:0px;
+    margin:0px;
+}
+ul > li > ul > li {
+    font-weight: 300;
+    list-style-type: "♡ ";
+
+
+}
+ul > li > ul > li.fav {
+    list-style-type: "♥︎ ";
+    color: #f00;
+    text-outline: 1px solid #000;
+}
+ul > li > ul > li > a {
+    color: #000;
+}
+/* 
+  ul > li > ul > li > a::before {
+    content: "🤍 ";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    margin-right: 0.5em;
+
+}
+ul > li > ul > li > a.fav::before {
+    content: "💙 ";
+    display: inline-block;
+    height: 1em;
+    width: 1em;
+    filter: hue-rotate(180deg);
+}
+*/ 
+
+.cover {
+    width: 8in;
+    border: 20px solid #fff;
+}
+
+#guide {
+    display:flex;
+    position: fixed;
+    width: 2rem;
+    height: 95vh;
+    flex-direction:row;
+    right:0px;
+    bottom:2rem;
+    top:0px;
+    background-color:#0006;
+    font-size: 2vmin;
+    overflow: visible;
+    box-sizing: border-box;
+    transition: width 200ms linear;
+    z-index: 999;
+    color:#fff;
+}
+
+.showAlpha #guideHandle {
+    right: 1.35em;
+}
+
+.showAlpha #guide {
+    width: 2em;
+}
+.guideArrow {
+    display: inline-block;
+    transform: rotate(0deg);
+    transition: all 200ms linear;
+}
+.showAlpha .guideArrow {
+    display:inline-block;
+    transform: rotate(180deg);
+
+}
+#guide li a {
+    text-shadow: 1px 1px 0px #000;
+    padding-left: 4px;
+}
+#guide li {
+    transition: transform 100ms linear, background 100ms linear, border-radius 100ms linear;
+    transform: scale(1) translate(0px, 0px);
+    background-color: #0000;
+    display: inline-block;
+    border-radius: 0%;
+    width: 1em;
+}
+#guide li:hover {
+    transform: scale(3) translate(-4px, 0px);
+    background-color: #999;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+}
+#guide li:hover + li {
+    transform: scale(1.5) translate(-2px, 2px);
+}
+#guide li:has(+ li:hover) {
+    transform: scale(1.5) translate(-2px, -2px);
+}
+body.fav .artists > li:not(:has(ul > li.fav)) {
+    display: none;
+}
+#toolbar button > svg {
+    filter: saturate(0) brightness(3);
+}
+body.fav button#showFavorites > svg {
+    filter: saturate(1) brightness(1);
+}
+#overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom:0px;
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+    background-color:#0009;
+    display: none;
+}
+.loader {
+    position: relative;
+    width: 85px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0),
+                      linear-gradient(#FFF 50px, transparent 0);
+    background-position: 0px center, 15px center, 30px center, 45px center, 60px center, 75px center, 90px center;
+    animation: rikSpikeRoll 0.65s linear infinite alternate;
+  }
+@keyframes rikSpikeRoll {
+  0% { background-size: 10px 3px;}
+  16% { background-size: 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+  33% { background-size: 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px, 10px 3px}
+  50% { background-size: 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px, 10px 3px}
+  66% { background-size: 10px 3px, 10px 10px, 10px 30px, 10px 50px, 10px 3px, 10px 3px}
+  83% { background-size: 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px, 10px 3px}
+  100% { background-size: 10px 3px, 10px 3px, 10px 3px,  10px 10px, 10px 30px, 10px 50px}
+}
+
+@media only screen and (max-width: 600px) {
+      body {
+        font-size: 20px;
+      }
+      main {
+        overflow:scroll;
+        height: 93vh;
+        justify-content: flex-start;
+      }
+    .artists {
+        padding:0;
+        margin:0;
+        column-count: 1;
+        width:99vw;
+    }
+    .artist {
+        padding-left: 0.5em;
+    }
+    .cover {
+        width: 90vw;
+    }
+    #guide {
+        display:flex;
+        position: fixed;
+        width: 2rem;
+        height: 93vh;
+        flex-direction:row;
+        right:0px;
+        bottom:0px;
+        top:0px;
+        background-color:#333;
+        font-size: 14px;
+        overflow: visible;
+        box-sizing: border-box;
+        transition: height 150ms linear;
+        
+    }
+    #guideHandle {
+        display:flex;
+        flex-direction:column;
+        align-content: center;
+        justify-content: center;
+        height: 4em;
+        width: 1.5em;
+        border-radius: 10px 0px 0px 10px;
+        position: absolute;
+        top: 40%;
+        right: 7px;
+        color:#fff;
+        background: #0006;
+        box-sizing: border-box;
+        padding-left: 0.25em;
+        transform: scale(1.2);
+        text-shadow: 1px 1px 0px #0009;
+    }
+    #guide a {
+        display: inline-block;
+    }
+}
+#toolbar {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    background-color:#333;
+}
+
+#toolbar button {
+    background:#333;
+    color:#dedede;
+    font-size: 32px;
+
+}
+#searchTool {
+    position: fixed;
+    bottom: 7vh;
+    left: 0px;
+    width: 100vw;
+    display: flex;
+    height: 0vh;
+    overflow: hidden;
+    flex-direction:row;
+    transition: all 150ms linear;
+}
+#searchTool button {
+    background: #333;
+}
+#search.show {
+    height: 5vh;
+}
+input, button {
+    font-size: 18px;
+}
+input {
+    flex-grow:3;
+    
+}
+button {
+    flex: 1;
+}
+ol li a {
+    text-decoration: none;
+    color: #eee;
+}
+@media print {
+    .cover { margin-top: 1in; page-break-after: always; width: 8in; }
+    body { background: #fff; }
+    #overlay, #toolbar, #searchTool, #guide, #guideHandle { display: none; }
+    
+
+}
+

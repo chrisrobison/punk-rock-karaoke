@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Lexend", "Helvetica Neue", "Helvetica", sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 1em;
+            background-color: #333;
+            box-sizing: border-box;
+            display: flex;
+            justify-content:center;
+            align-content: center;
+        }
+        header {
+            background-color: #222;
+            color: #eee;
+            position: fixed;
+            top:0px;
+            left:0px;
+            right: 0px;
+            width:100%;
+            align-content: center;
+            flex-direction: column;
+            z-index:999;
+        }
+        li {
+            list-style-type: none;
+            margin-left: 2em;
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position:relative;
+            top:68px;
+            width: 800px;
+        }
+        @media (width < height) {
+            body {
+                font-size: 5vw;
+            }
+            main {
+                width: 100vw;
+
+            }
+        }
+
+        footer {
+            background-color: #666;
+            color: #eee;
+            height: 0vh;
+        }
+        form {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: baseline;
+            width: 100%;
+            margin-top: 0em;
+        }
+        button {
+
+        }
+        table {
+            width: 100vw;
+            display: block;
+            margin: 0em auto;
+            border-collapse: collapse;
+            border: 2px solid #000;
+        }
+        tr:nth-child(odd) td {
+            background-color:#eee;
+        }
+        td {
+            border-bottom: 1px solid #bbb;
+            vertical-align: top;
+            background-color:#fff;
+            color: #000;
+            padding: .5em .5em;
+        }
+        td.url {
+            width: 2em;
+        }
+        td.homepage {
+            width: 8em;
+        }
+        td.desc {
+            width: 40em;
+        }
+        td:first-child {
+            width: 15em;
+        }
+        h1 {
+            display: inline-block;
+            width: 30em;
+            margin: 0em auto;
+            color: #fff;
+            text-shadow: 2px 2px 1px #000f;
+            background-color:#069;
+            box-shadow: 0px 3px 3px #0006;
+        }
+        th { 
+            background-color: #036;
+            color: #fff;
+            font-size: 1.2em;
+            text-transform: capitalize;
+            padding: .5em;
+        }
+        header {
+            display: flex;
+            font-size: 1.3em;
+            position:fixed;
+        }
+        select, input { 
+            font-size: 18px;
+            padding: .25em;
+        }
+        button {
+            font-size: 26px;
+            background: none;
+            border: 0;
+            text-shadow: 3px 3px 3px #0009;
+        }
+#alpha {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    right: 0px;
+    font-size: 1em;
+    top: 3vh;
+    padding: 2vh 0px;
+    background: #222;
+    margin: 0px;
+    width: 9vw;
+}
+        #alpha a {
+            padding: 0px 0px;
+        }
+        .sticky {
+          padding: 10px 20px;
+          position: relative;
+          z-index: 1;
+          color: #fff;
+        }
+
+        .sticky.fixed {
+          position: fixed;
+          top: 66px;
+          box-sizing: border-box;
+          z-index: 0;
+        }
+
+        .sticky.fixed.absolute {
+          position: absolute;
+        }
+        .wrap {
+            width:100%;
+            display:flex;
+        }
+        .hidden {
+            display:none;
+        }
+        a {
+            color:#ccc;
+            text-decoration:none;
+            transition: all 200ms linear;
+            transform-origin: bottom center;
+            text-align: center;
+        }
+        a:hover {
+            text-decoration:underline;
+            transform:scale(2);
+            transform-origin: bottom center;
+        }
+        dt {
+            box-sizing: border-box;
+            color: #fff;
+            background-color:#999;
+            padding: .5em;
+            text-shadow: 2px 2px 2px #0009;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <form onsubmit="return app.search()">
+            <label for="search">Search: </label>
+            <input type="text" size="40" id="search" autocomplete="off" name="search"><button>&#x1F50E;</button>
+        </form>
+        <div id="alpha">
+        </div>
+    </header>
+    <main></main>
+
+    <script>
+        const $ = str => document.querySelector(str);
+        const $$ = str => document.querySelectorAll(str);
+
+        (function() {
+            const app = {
+                data: {},
+                state: {
+                    loaded: false
+                },
+                init: function() {
+                    let cnt = 0;
+                    const alphaEl = $('#alpha');
+                    let out = `<a href='#0-9'>#</a>`;
+                    for (var i = 0; i < 26; i++) {
+                        out += `<a href='#${String.fromCharCode(i+65)}'>${String.fromCharCode(i+65)}</a>`;
+                    }
+                    alphaEl.innerHTML = out;
+                    app.load("punk-rock-karaoke.json");
+                },
+                load: function(songs) {
+                    app.fetch(songs, app.display, $("main"));
+                    $('#search').addEventListener('keypress', function(evt) { 
+                        console.dir(evt);
+                        app.filter($('#search').value + evt.key); 
+                    });
+                },
+                fetch: function(url, callback, tgt) {
+                    fetch(url).then(response => response.json()).then(data => {
+                        app.data = data;
+                        app.state.loaded = true;
+                        if (callback && typeof(callback) === "function") {
+                            callback(data, tgt);
+                        }
+                    });
+                },
+                display: function(data, tgt) {
+                    let out = "<div class='wrap'><h1 class='sticky'><a name='0-9'>0 - 9</a></h1></div><dl>"
+                    let head = "";
+                    const artists = Object.keys(data);
+                    artists.sort((a, b) => (a[0].toUpperCase() > b[0].toUpperCase()) ? 1 : ((b[0].toUpperCase() > a[0].toUpperCase()) ? -1 : 0));
+                    out += head + "<tbody>";
+
+                    let cnt = 0,
+                        idx = '0-9',
+                        cat;
+                    artists.forEach(artist => {
+                        let songs = data[artist];
+
+                        cat = artist.toString()[0].toUpperCase();
+
+                        if (((cat !== idx) && (idx != '0-9')) || ((idx == '0-9') && (cat == 'A'))) {
+                                    out += `</dl><div class='wrap'><h1 class='sticky'><a name="${cat}">${cat}</a></h1></div><dl>${head}`;
+                            idx = cat;
+                        }
+
+                        out += `<dt>${artist}</dt><dd><ul>`;
+                        songs.forEach(song=>{
+                            //out += `<tr><td></td><td><a href='#${artist}:${song}'>${song}</a></td></tr>`;
+                            out += `<li><a href='#${artist}:${song}'>${song}</a></li>`;
+                        });
+                        out += `</ul></dd>`;
+                    });
+                    out += "</dl>";
+                    if (tgt) {
+                        tgt.innerHTML = out;
+                        setTimeout(function() { app.sticky.init(); }, 500);
+                    }
+                    return out;
+                },
+                filter: function(str) {
+                    if (str) {
+                        const re = new RegExp(str, 'i');
+
+                        $$("tr").forEach(el=>{
+                            if (!el.innerText.match(re)) {
+                                el.classList.add('hidden');
+                            } else {
+                                el.classList.remove('hidden');
+                            }
+                        });
+                    }
+                }
+            };
+            window.app = app;
+            app.init();
+        })();
+    </script>
+    <script src="sticky.js"></script>
+</body>
+
+</html>

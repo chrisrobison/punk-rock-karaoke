@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <title>
+        Punk Rock and Schlock Karaoke
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..800&amp;display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="guide"></div>
+    <div id="searchTool">
+        <input type="text" size="22" id="search" placeholder="Song, Artist, Genre..." autocomplete="off"> <button><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px">
+                <path fill-rule="evenodd" fill="rgb(214, 214, 214)" d="M8.905,0.002 C14.464,-0.066 17.465,2.607 18.962,6.579 C19.295,7.462 19.656,8.792 19.486,10.077 C19.340,11.189 19.227,12.137 18.884,13.026 C18.655,13.618 17.985,14.313 18.072,15.010 C19.172,16.106 20.272,17.202 21.372,18.299 C22.123,19.073 22.874,19.847 23.624,20.622 C24.288,21.664 24.031,23.005 23.179,23.649 C22.189,24.398 20.911,23.801 20.220,23.232 C18.474,21.509 16.727,19.786 14.982,18.064 C14.947,18.064 14.912,18.064 14.877,18.064 C14.376,17.995 13.559,18.685 13.070,18.873 C12.333,19.155 11.516,19.322 10.634,19.447 C7.277,19.922 4.748,18.317 3.013,16.863 C-0.173,14.194 -1.103,8.299 1.546,4.334 C2.689,2.623 4.440,1.153 6.601,0.471 C7.315,0.246 8.111,0.240 8.905,0.002 ZM9.560,2.533 C8.847,2.728 8.142,2.673 7.517,2.873 C5.328,3.572 3.678,5.195 2.908,7.310 C1.202,11.991 5.175,17.531 10.005,16.941 C11.457,16.764 12.555,16.484 13.541,15.871 C16.129,14.262 18.218,10.021 16.108,6.344 C14.790,4.049 12.868,2.806 9.560,2.533 ZM8.958,3.891 C11.685,4.149 13.195,4.845 14.458,6.579 C14.782,7.024 15.570,8.009 15.060,8.746 C14.813,9.103 14.090,9.330 13.620,9.007 C13.289,8.780 13.180,8.280 12.965,7.936 C12.458,7.125 11.653,6.486 10.686,6.135 C10.167,5.947 9.343,5.839 8.644,5.953 C7.863,6.079 6.910,6.693 6.365,5.927 C5.229,4.327 7.985,4.157 8.958,3.891 Z"></path>
+            </svg></button>
+    </div>
+    <div id="toolbar">
+        <button onclick="return app.goHome()"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44px" height="35px">
+                <path fill-rule="evenodd" fill="rgb(214, 214, 214)" d="M21.312,0.000 C25.626,0.174 27.863,4.255 30.766,6.130 C30.823,4.201 30.880,2.270 30.938,0.341 C33.172,0.397 35.406,0.454 37.641,0.511 C37.698,4.370 37.755,8.231 37.812,12.091 C39.875,13.907 41.938,15.724 44.000,17.540 C43.530,18.763 42.619,19.917 41.422,20.435 C35.006,15.213 28.588,9.990 22.172,4.768 C21.943,4.825 21.714,4.882 21.484,4.938 C15.183,10.103 8.880,15.270 2.578,20.435 C1.371,19.906 0.487,18.768 -0.000,17.540 C1.955,14.205 17.409,2.257 21.312,0.000 ZM25.438,34.739 C25.438,31.277 25.438,27.814 25.438,24.352 C23.146,24.352 20.854,24.352 18.562,24.352 C18.562,27.814 18.562,31.277 18.562,34.739 C15.418,34.836 8.270,35.614 6.703,33.888 C6.589,29.177 6.474,24.465 6.359,19.754 C11.572,15.554 16.787,11.352 22.000,7.152 C22.115,7.152 22.229,7.152 22.344,7.152 C28.577,14.141 37.640,14.136 37.641,27.246 C37.526,29.517 37.411,31.788 37.297,34.058 C35.227,35.575 28.768,34.792 25.438,34.739 Z"></path>
+            </svg></button> <button id='showFavorites' onclick="return app.showFavorites();"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="39px" height="37px">
+                <path fill-rule="evenodd" fill="rgb(255, 0, 0)" d="M19.881,8.364 C14.913,-4.119 0.942,-1.207 0.907,13.282 C0.887,21.239 7.608,24.214 12.087,27.395 C16.431,30.480 19.530,34.700 20.020,36.497 C20.427,34.736 23.844,30.397 27.841,27.308 C32.212,23.932 38.993,21.153 38.910,13.195 C38.761,-1.329 24.526,-3.621 19.881,8.364 Z"></path>
+            </svg></button> <button onclick="return app.showSongs();"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36px" height="43px">
+                <path fill-rule="evenodd" stroke-width="1px" stroke="rgb(0, 0, 0)" fill="rgb(214, 214, 214)" d="M35.237,0.500 L35.496,10.832 L35.496,25.296 C35.496,25.296 35.535,31.733 35.367,34.336 C35.489,36.922 32.715,38.085 30.970,38.339 C27.330,38.869 22.388,38.195 22.500,34.500 C22.617,30.629 26.755,27.659 31.298,29.170 C31.202,28.793 31.500,7.500 31.500,7.500 L14.994,11.510 C14.994,11.510 14.923,36.077 14.865,37.081 C13.732,41.626 10.750,42.324 8.210,42.213 C4.631,42.057 0.290,41.492 1.097,37.564 C1.909,33.612 6.291,31.658 10.796,32.915 C10.736,23.755 10.796,5.795 10.796,5.795 L35.237,0.500 Z"></path>
+            </svg></button> <button onclick="return app.toggleSearch()"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="42px" height="42px">
+                <path fill-rule="evenodd" fill="rgb(214, 214, 214)" d="M15.786,0.784 C25.152,0.669 30.209,5.173 32.731,11.866 C33.292,13.353 33.899,15.594 33.614,17.759 C33.367,19.634 33.177,21.232 32.599,22.729 C32.214,23.726 31.085,24.898 31.231,26.071 C33.084,27.918 34.938,29.766 36.791,31.613 C38.056,32.917 39.321,34.222 40.586,35.527 C41.705,37.283 41.271,39.542 39.836,40.628 C38.168,41.890 36.015,40.884 34.849,39.924 C31.908,37.022 28.965,34.119 26.024,31.217 C25.965,31.217 25.906,31.217 25.847,31.217 C25.004,31.100 23.627,32.264 22.802,32.580 C21.560,33.056 20.184,33.338 18.698,33.548 C13.042,34.347 8.782,31.644 5.857,29.194 C0.489,24.696 -1.077,14.764 3.386,8.084 C5.312,5.201 8.263,2.723 11.903,1.575 C13.107,1.196 14.448,1.185 15.786,0.784 ZM16.889,5.050 C15.687,5.378 14.499,5.285 13.447,5.621 C9.759,6.799 6.979,9.534 5.681,13.098 C2.807,20.985 9.501,30.319 17.639,29.326 C20.084,29.027 21.936,28.555 23.597,27.523 C27.957,24.812 31.477,17.665 27.921,11.470 C25.701,7.602 22.462,5.508 16.889,5.050 ZM15.874,7.336 C20.470,7.771 23.013,8.944 25.141,11.866 C25.687,12.616 27.015,14.275 26.156,15.516 C25.740,16.118 24.522,16.501 23.729,15.956 C23.173,15.574 22.988,14.733 22.626,14.153 C21.771,12.785 20.415,11.710 18.787,11.119 C17.911,10.801 16.522,10.620 15.345,10.811 C14.029,11.024 12.423,12.059 11.505,10.767 C9.591,8.072 14.236,7.784 15.874,7.336 Z"></path>
+            </svg></button>
+    </div>
+    <main>
+        <img src="cover-web.jpg" class="cover">
+    </main>
+    <div id="overlay">
+        <span class="loader"></span>
+    </div>
+    <script>
+        const $ = str => document.querySelector(str);
+        const $$ = str => document.querySelectorAll(str);
+
+        (function() {
+            const app = {
+                data: {},
+                state: {
+                    favorites: {
+
+                    },
+                    loaded: false,
+                    showFavorites: false,
+                    showSearch: false
+                },
+                goHome: function() {
+                    $("main").scrollTo(0, 0);
+                },
+                showFavorites: function() {
+                    $("#overlay").style.display = "block";
+                    if (!app.state.showFavorites) {
+                        $$(".artists > li > ul > li").forEach(song => {
+                            song.style.display = (song.classList.contains('fav')) ? 'list-item' : 'none';
+                        });
+                        app.state.showFavorites = true;
+                        $("body").classList.add("fav");
+                    } else {
+                        $$(".artists > li > ul > li").forEach(song => {
+                            song.style.display = 'list-item';
+                        });
+                        app.state.showFavorites = false;
+                        $("body").classList.remove("fav");
+                    }
+                    $("#overlay").style.display = "none";
+                },
+                toggleSearch: function() {
+                    if (!app.state.showSearch) {
+                        app.state.showSearch = true;
+                        $("#searchTool").style.height = '2rem';
+                        $("#search").focus();
+                        $("#guide").style.height = '89.2vh';
+                    } else {
+                        app.state.showSearch = false;
+                        $("#searchTool").style.height = '0px';
+                        $("#guide").style.height = '93vh';
+                    }
+                },
+                init: function() {
+                    $("#search").onkeydown = app.doKey;
+                    app.buildGuide();
+
+                    $("#guide").onmouseover = function(evt) {
+                        $("body").classList.add("showAlpha");
+                    };
+
+                    $("#guide").onmouseout = function(evt) {
+                        $("body").classList.remove("showAlpha");
+                    };
+
+                    let faves = app.load('favorites');
+                    console.log("faves:");
+                    console.dir(faves);
+                    if (faves) {
+                        app.state.favorites = faves;
+                    }
+                    app.fetch("punk-rock-karaoke.json", app.display);
+                },
+                buildGuide: function() {
+                    let alpha = "#ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                    let out = "<ol>";
+                    for (let i = 0; i < 27; i++) {
+                        let a = alpha[i];
+                        out += `<li><a href='#${alpha[i]}' onclick="$('a[name=${alpha[i]}]').scrollIntoView({behavior:"smooth"}); return false;">${alpha[i]}</a></li>`;
+                    }
+                    out += "</ol>";
+                    $("#guide").innerHTML = out;
+                },
+                fetch: function(url, callback) {
+                    fetch(url).then(response => response.json()).then(data => {
+                        app.data = data;
+                        app.state.loaded = true;
+                        if (data && callback && typeof(callback) === "function") {
+                            callback(data);
+                        }
+                    });
+                },
+                doKey: function(evt) {
+                    console.dir(evt);
+                    let search, re;
+
+                    search = (evt.key.match(/^[a-zA-Z0-9]$/)) ? $("#search").value + evt.key : $("#search").value;
+
+                    re = new RegExp(search, "i");
+                    $$("li").forEach(el => {
+                        if (!el.innerHTML.match(re)) {
+                            el.style.display = "none";
+                        } else {
+                            el.style.display = "list-item";
+                        }
+                    });
+                },
+                showSongs: function(who) {
+                    $$("li").forEach(el => {
+                        el.style.display = "list-item";
+                    });
+                    who.scrollIntoView();
+                },
+                toggleFavorite: function(who, el) {
+                    el.parentElement.classList.toggle('fav');
+                    if (!app.state.favorites[who]) {
+                        app.state.favorites[who] = 1;
+                    } else {
+                        app.state.favorites[who] = 0;
+                    }
+                    app.save('favorites', app.state.favorites);
+                },
+                display: function(data, tgt = $("main")) {
+                    let out = "<ul class='artists'><a name='num'></a>";
+                    let keys = Object.keys(data);
+                    let last = "";
+                    keys.forEach(key => {
+                        let item = data[key];
+                        let fc = key[0];
+
+                        if (!fc.match(/\d/) && (last !== fc)) {
+                            out += `<a name="${fc}"></a>`;
+                            last = fc;
+                        }
+                        out += `<li><a name="${key.replace(/\W/g,'')}" class='artist' onclick="app.showSongs(this)">${key}</a><ul>`;
+                        let cls = '',
+                            mykey = '';
+                        item.forEach(song => {
+                            mykey = `${key}:${song}`;
+                            cls = (mykey in app.state.favorites) ? " class='fav'" : "";
+                            out += `<li onclick="app.toggleFavorite('${key}:${song}',this); return false;"${cls}><a onclick="app.toggleFavorite('${key}:${song}',this); return false;">${song}</a></li>`;
+                        });
+                        out += `</ul></li>`;
+                    });
+                    out += "</ul>";
+
+                    if (tgt) {
+                        tgt.innerHTML += out;
+                    }
+                    return out;
+                },
+                save: function(key, obj) {
+                    localStorage.setItem(key, JSON.stringify(obj));
+                },
+                load: function(key) {
+                    return JSON.parse(localStorage.getItem(key));
+                }
+            }
+            window.app = app;
+            app.init();
+        })();
+    </script>
+</body>
+
+</html>
